@@ -152,4 +152,3 @@ class AuthController
         redirect(base_url('student/dashboard'));
     }
 }
-s

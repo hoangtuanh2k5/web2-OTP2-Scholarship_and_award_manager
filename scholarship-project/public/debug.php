@@ -1,6 +1,10 @@
 <?php
-define('APP_URL',  'http://localhost/web2-OPT2/scholarship-project/public');
-define('BASE_URL', 'http://localhost/web2-OPT2/scholarship-project/public/index.php');
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$publicPath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
+
+define('APP_URL', $scheme . '://' . $host . $publicPath);
+define('BASE_URL', APP_URL . '/index.php');
 
 echo '<h3>URL Check</h3>';
 echo 'APP_URL: ' . APP_URL . '<br>';

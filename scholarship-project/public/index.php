@@ -4,8 +4,12 @@ declare(strict_types=1);
 // ── Base URL ──────────────────────────────────────────────────────────────────
 // APP_URL  = folder chứa index.php (dùng cho assets, links tĩnh)
 // BASE_URL = entry point index.php (dùng cho routing)
-define('APP_URL',  'http://localhost/web2-OPT2/scholarship-project/public');
-define('BASE_URL', 'http://localhost/web2-OPT2/scholarship-project/public/index.php');
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$publicPath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
+
+define('APP_URL', $scheme . '://' . $host . $publicPath);
+define('BASE_URL', APP_URL . '/index.php');
 
 // ── Autoload core files ───────────────────────────────────────────────────────
 require_once __DIR__ . '/../app/core/Session.php';
